@@ -1,5 +1,6 @@
 package com.example.weatherapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -72,6 +73,12 @@ public class WeatherApp extends AppCompatActivity {
                 imm.hideSoftInputFromWindow(etSearch.getWindowToken(), 0);
 
                 String city = etSearch.getText().toString();
+
+                if (city.equals(""))
+                {
+                    city = "Hanoi";
+                }
+
                 getCurrentWeatherData(city);
                 etSearch.setText("");
             }
@@ -83,11 +90,28 @@ public class WeatherApp extends AppCompatActivity {
             public boolean onKey(View v, int keyCode, KeyEvent event)
             {
                 if(keyCode == KeyEvent.KEYCODE_ENTER) {
-                    getCurrentWeatherData(etSearch.getText().toString());
+                    String city = etSearch.getText().toString();
+
+                    if (city.equals(""))
+                    {
+                        city = "Hanoi";
+                    }
+
+                    getCurrentWeatherData(city);
                     etSearch.setText("");
                 }
 
                 return false;
+            }
+        });
+
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String city = etSearch.getText().toString();
+                Intent intent = new Intent(WeatherApp.this, WeekWeather.class);
+                intent.putExtra("city", city);
+                startActivity(intent);
             }
         });
     }

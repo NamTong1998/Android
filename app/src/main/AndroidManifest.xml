@@ -3,14 +3,13 @@
     package="com.example.weatherapp">
 
     <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
         android:resizeable="true"
         android:smallScreens="true"
-        android:normalScreens="true"
-        android:largeScreens="true"
         android:xlargeScreens="true" />
 
-    <uses-permission
-        android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +18,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".WeekWeather"></activity>
         <activity android:name=".WeatherApp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
