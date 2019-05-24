@@ -62,6 +62,7 @@ public class WeatherApp extends AppCompatActivity {
 
         mapping();
 
+        etSearch.setText("Hanoi");
         getCurrentWeatherData("Hanoi");
 
         btnSearch.setOnClickListener(new View.OnClickListener()
@@ -80,6 +81,13 @@ public class WeatherApp extends AppCompatActivity {
                 }
 
                 getCurrentWeatherData(city);
+                //etSearch.setText("");
+            }
+        });
+
+        etSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 etSearch.setText("");
             }
         });
@@ -92,13 +100,8 @@ public class WeatherApp extends AppCompatActivity {
                 if(keyCode == KeyEvent.KEYCODE_ENTER) {
                     String city = etSearch.getText().toString();
 
-                    if (city.equals(""))
-                    {
-                        city = "Hanoi";
-                    }
-
                     getCurrentWeatherData(city);
-                    etSearch.setText("");
+                    //etSearch.setText("");
                 }
 
                 return false;
@@ -109,7 +112,9 @@ public class WeatherApp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String city = etSearch.getText().toString();
-                Intent intent = new Intent(WeatherApp.this, WeekWeather.class);
+                if (etSearch.getText().toString().equals(""))
+                    city = "Hanoi";
+                Intent intent = new Intent(WeatherApp.this, WeatherApp2.class);
                 intent.putExtra("city", city);
                 startActivity(intent);
             }

@@ -3,6 +3,7 @@ package com.example.weatherapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -23,41 +24,38 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class WeekWeather extends AppCompatActivity {
+public class WeatherApp2 extends AppCompatActivity {
+
     ImageView btnBack;
-    TextView txtName;
+    TextView txtName3;
     ListView listView;
 
     CustomAdapter customAdapter;
-    ArrayList<WeatherCustom> arrayListWeather;
+    ArrayList<Weather> arrayList;
 
-    public void mapping()
+    public void mapping2()
     {
         btnBack = (ImageView) findViewById(R.id.btnBack);
-        txtName = (TextView) findViewById(R.id.txtName3);
+        txtName3 = (TextView) findViewById(R.id.txtName3);
         listView = (ListView) findViewById(R.id.listView);
 
-        arrayListWeather = new ArrayList<WeatherCustom>();
-        customAdapter = new CustomAdapter(WeekWeather.this, arrayListWeather);
+        arrayList = new ArrayList<Weather>();
+        customAdapter = new CustomAdapter(WeatherApp2.this, arrayList);
         listView.setAdapter(customAdapter);
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_week);
+        setContentView(R.layout.main2);
 
-        mapping();
+        mapping2();
 
         Intent intent = getIntent();
         String city = intent.getStringExtra("city");
 
-        if(city.equals(""))
-        {
-            city = "Hanoi";
-        }
-
-        get7DaysData(city);
+        get7DaysWeather(city);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +65,9 @@ public class WeekWeather extends AppCompatActivity {
         });
     }
 
-    public void get7DaysData(String data)
+    public void get7DaysWeather(String data)
     {
-        RequestQueue requestQueue = Volley.newRequestQueue(WeekWeather.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(WeatherApp2.this);
         String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + data + "&units=metric&cnt=7&appid=e6c67e6d24ed10099b1136d1b903a5f8";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
@@ -81,7 +79,7 @@ public class WeekWeather extends AppCompatActivity {
 
                             JSONObject jsonObjectCity = jsonObject.getJSONObject("city");
                             String city = jsonObjectCity.getString("name");
-                            txtName.setText(city);
+                            txtName3.setText("City Name: " + city);
 
                             JSONArray jsonArrayList = jsonObject.getJSONArray("list");
                             for (int i = 0; i < jsonArrayList.length(); i++)
@@ -107,7 +105,7 @@ public class WeekWeather extends AppCompatActivity {
                                 String status = jsonObjectWeather.getString("description");
                                 String icon = jsonObjectWeather.getString("icon");
 
-                                arrayListWeather.add(new WeatherCustom(date, status, icon, maxTemp, minTemp));
+                                arrayList.add(new Weather(date, status, icon, maxTemp, minTemp));
                             }
 
                             customAdapter.notifyDataSetChanged();
@@ -116,6 +114,7 @@ public class WeekWeather extends AppCompatActivity {
                         {
                             e.printStackTrace();
                         }
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -124,7 +123,7 @@ public class WeekWeather extends AppCompatActivity {
 
                     }
                 });
-        
+
         requestQueue.add(stringRequest);
     }
 }

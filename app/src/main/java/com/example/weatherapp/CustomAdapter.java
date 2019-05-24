@@ -8,16 +8,15 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
+import com.squareup.picasso.Picasso;
 
 public class CustomAdapter extends BaseAdapter {
 
     Context context;
-    ArrayList<WeatherCustom> arrayList;
+    ArrayList<Weather> arrayList;
 
-    public CustomAdapter(Context context, ArrayList<WeatherCustom> arrayList) {
+    public CustomAdapter(Context context, ArrayList<Weather> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
     }
@@ -40,21 +39,22 @@ public class CustomAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        convertView = inflater.inflate(R.layout.list_line, null);
+        convertView = inflater.inflate(R.layout.line, null);
 
-        WeatherCustom weatherCustom = arrayList.get(position);
+        Weather weather = arrayList.get(position);
 
-        TextView txtDate = convertView.findViewById(R.id.txtDate2);
-        TextView txtStatus = convertView.findViewById(R.id.txtStatus2);
-        ImageView icon = convertView.findViewById(R.id.icon);
-        TextView maxTemp = convertView.findViewById(R.id.maxTemp);
-        TextView minTemp = convertView.findViewById(R.id.minTemp);
+        TextView txtDate2 = (TextView) convertView.findViewById(R.id.txtDate2);
+        TextView txtStatus2 = (TextView) convertView.findViewById(R.id.txtStatus2);
+        TextView txtMax = (TextView) convertView.findViewById(R.id.txtMax);
+        TextView txtMin = (TextView) convertView.findViewById(R.id.txtMin);
+        ImageView icon = (ImageView) convertView.findViewById(R.id.icon);
 
-        txtDate.setText(weatherCustom.date);
-        txtStatus.setText(weatherCustom.status);
-        maxTemp.setText(weatherCustom.maxTemp + "°C");
-        minTemp.setText(weatherCustom.minTemp + "°C");
-        Picasso.with(context).load("http://openweathermap.org/img/w/" + weatherCustom.icon + ".png").into(icon);
+        txtDate2.setText(weather.date);
+        txtStatus2.setText(weather.status);
+        txtMax.setText(weather.maxTemp);
+        txtMin.setText(weather.minTemp);
+
+        Picasso.with(context).load("http://openweathermap.org/img/w/" + weather.icon + ".png").into(icon);
 
         return convertView;
     }

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WeekWeather"
+    tools:context=".WeatherApp2"
+    android:background="#FF99DD"
     android:orientation="vertical"
     android:id="@+id/main2">
 
@@ -21,7 +22,7 @@
         android:layout_height="wrap_content"
         android:textSize="30dp"
         android:textColor="#FF0000"
-        android:text="City Name"
+        android:text="City Name: "
         android:layout_margin="9dp"
         android:id="@+id/txtName3" />
 
