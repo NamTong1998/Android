@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".WeatherApp2"
-    android:background="#FF99DD"
+    android:background="@drawable/bg"
     android:orientation="vertical"
     android:id="@+id/main2">
 

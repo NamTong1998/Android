@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".WeatherApp"
-    android:background="#FFCC99"
+    android:background="@drawable/bg"
     android:id="@+id/main1">
 
     <LinearLayout
@@ -66,7 +66,7 @@
         android:text="Temperature"
         android:textSize="35dp"
         android:layout_marginTop="2dp"
-        android:textColor="#FF80DF"
+        android:textColor="#FF0000"
         android:id="@+id/txtTemp" />
 
     <TextView
@@ -76,7 +76,7 @@
         android:text="Status"
         android:textSize="30dp"
         android:layout_marginTop="2dp"
-        android:textColor="#FFFF90"
+        android:textColor="#FFF000"
         android:id="@+id/txtStatus" />
 
     <LinearLayout
@@ -103,7 +103,7 @@
                 android:layout_gravity="center"
                 android:textSize="20dp"
                 android:text="Humidity"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#009900"/>
         </LinearLayout>
 
         <LinearLayout
@@ -123,7 +123,7 @@
                 android:layout_gravity="center"
                 android:textSize="20dp"
                 android:text="Cloud Rate"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#006600"/>
         </LinearLayout>
 
         <LinearLayout
