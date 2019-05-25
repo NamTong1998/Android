@@ -140,7 +140,7 @@ public class WeatherApp extends AppCompatActivity {
                             txtName.setText("City Name: " + name);
                             Long l = Long.valueOf(date);
                             Date d = new Date(l * 1000L);
-                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
                             String day = simpleDateFormat.format(d);
                             txtDate.setText("Update: " + day);
 

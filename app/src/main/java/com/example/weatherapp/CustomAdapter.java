@@ -1,6 +1,7 @@
 package com.example.weatherapp;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,23 @@ public class CustomAdapter extends BaseAdapter {
         txtStatus2.setText(weather.status);
         txtMax.setText(weather.maxTemp);
         txtMin.setText(weather.minTemp);
+
+        int max = Integer.valueOf(weather.maxTemp);
+        int min = Integer.valueOf(weather.minTemp);
+
+        if(max >= 28)
+            txtMax.setTextColor(Color.RED);
+        if((max < 28) && (max >= 18))
+            txtMax.setTextColor(Color.GREEN);
+        if(max < 18)
+            txtMax.setTextColor(Color.BLUE);
+
+        if(min >= 28)
+            txtMin.setTextColor(Color.RED);
+        if((min < 28) && (max >= 18))
+            txtMin.setTextColor(Color.GREEN);
+        if(min < 18)
+            txtMin.setTextColor(Color.BLUE);
 
         Picasso.with(context).load("http://openweathermap.org/img/w/" + weather.icon + ".png").into(icon);
 

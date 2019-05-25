@@ -68,7 +68,7 @@ public class WeatherApp2 extends AppCompatActivity {
     public void get7DaysWeather(String data)
     {
         RequestQueue requestQueue = Volley.newRequestQueue(WeatherApp2.this);
-        String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + data + "&units=metric&cnt=7&appid=e6c67e6d24ed10099b1136d1b903a5f8";
+        String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + data + "&units=metric&cnt=16&appid=e6c67e6d24ed10099b1136d1b903a5f8";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
@@ -89,16 +89,16 @@ public class WeatherApp2 extends AppCompatActivity {
                                 String dt = jsonObjectList.getString("dt");
                                 long l = Long.valueOf(dt);
                                 Date date1 = new Date(l * 1000L);
-                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
                                 String date = simpleDateFormat.format(date1);
 
-                                JSONObject jsonObjectTemp = jsonObjectList.getJSONObject("temp");
-                                String max = jsonObjectTemp.getString("max");
-                                String min = jsonObjectTemp.getString("min");
+                                JSONObject jsonObjectTemp = jsonObjectList.getJSONObject("main");
+                                String max = jsonObjectTemp.getString("temp_max");
+                                String min = jsonObjectTemp.getString("temp_min");
                                 Double max1 = Double.valueOf(max);
                                 Double min1 = Double.valueOf(min);
-                                String maxTemp = String.valueOf(max1);
-                                String minTemp = String.valueOf(min1);
+                                String maxTemp = String.valueOf(max1.intValue());
+                                String minTemp = String.valueOf(min1.intValue());
 
                                 JSONArray jsonArrayWeather = jsonObjectList.getJSONArray("weather");
                                 JSONObject jsonObjectWeather = jsonArrayWeather.getJSONObject(0);
@@ -109,6 +109,7 @@ public class WeatherApp2 extends AppCompatActivity {
                             }
 
                             customAdapter.notifyDataSetChanged();
+
                         }
                         catch (JSONException e)
                         {
