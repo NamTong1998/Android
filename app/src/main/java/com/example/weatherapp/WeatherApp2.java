@@ -55,7 +55,7 @@ public class WeatherApp2 extends AppCompatActivity {
         Intent intent = getIntent();
         String city = intent.getStringExtra("city");
 
-        get7DaysWeather(city);
+        getDaysWeather(city);
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +65,7 @@ public class WeatherApp2 extends AppCompatActivity {
         });
     }
 
-    public void get7DaysWeather(String data)
+    public void getDaysWeather(String data)
     {
         RequestQueue requestQueue = Volley.newRequestQueue(WeatherApp2.this);
         String url = "http://api.openweathermap.org/data/2.5/forecast?q=" + data + "&units=metric&cnt=16&appid=e6c67e6d24ed10099b1136d1b903a5f8";

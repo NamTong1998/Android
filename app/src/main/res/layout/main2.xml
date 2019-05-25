@@ -9,22 +9,30 @@
     android:orientation="vertical"
     android:id="@+id/main2">
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@drawable/left_arrow"
-        android:layout_marginTop="17dp"
-        android:layout_marginLeft="9dp"
-        android:id="@+id/btnBack" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:textColor="#FF0000"
-        android:text="City Name: "
-        android:layout_margin="9dp"
-        android:id="@+id/txtName3" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/left_arrow"
+            android:layout_marginTop="17dp"
+            android:layout_marginLeft="9dp"
+            android:id="@+id/btnBack" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:textColor="#FF0000"
+            android:fontFamily="sans-serif"
+            android:text="City Name: "
+            android:layout_margin="9dp"
+            android:id="@+id/txtName3" />
+
+    </LinearLayout>
 
     <ListView
         android:layout_width="match_parent"
